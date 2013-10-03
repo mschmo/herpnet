@@ -2,7 +2,7 @@
 # Requests gives back an IncompleteRead exception (from httplib)
 from urllib import urlopen, urlencode
 
-get_endpoints = ['taxa', 'providers', 'occurrencecount',
+endpoints = ['taxa', 'providers', 'occurrencecount',
                  'occurrence', 'availablemaps', 'locations']
 
 
@@ -17,7 +17,7 @@ class Herpnet:
             fun = self.__make_get_endpoint_fun(endpoint)
             setattr(self, endpoint.replace('/', '_'), fun)
 
-    def __make_get_endpoint_fun(self, name):
+    def __make_endpoint_fun(self, name):
         def _function(options={}):
             return self.get('{}/'.format(name), options)
         return _function
