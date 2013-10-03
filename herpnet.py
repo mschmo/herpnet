@@ -21,5 +21,5 @@ class Herpnet:
         return _function
 
     def get(self, request, options):
-        options.update({'api_key': self.api_key)
-        return requests.get(self.base_url + request, params=options).text
+        options.update({'api': self.api_key})
+        return requests.get(self.base_url + request, headers=headers, params=options).text
