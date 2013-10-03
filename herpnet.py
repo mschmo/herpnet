@@ -13,7 +13,7 @@ class Herpnet:
     def __init__(self, api_key):
         self.api_key = api_key
 
-        for endpoint in get_endpoints:
+        for endpoint in endpoints:
             fun = self.__make_get_endpoint_fun(endpoint)
             setattr(self, endpoint.replace('/', '_'), fun)
 
