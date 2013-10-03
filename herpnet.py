@@ -38,4 +38,4 @@ class Herpnet:
     def get(self, request, options):
         options.update({'api': self.api_key})
         url = '{}{}?{}'.format(self.base_url, request, urlencode(options))
-        return urlopen(url)
+        return urlopen(url).read()
