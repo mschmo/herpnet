@@ -1,4 +1,6 @@
-import requests
+# Forced to use urllib instead of requests
+# Requests gives back an IncompleteRead exception (from httplib)
+from urllib import urlopen, urlencode
 
 get_endpoints = ['taxa', 'providers', 'occurrencecount',
                  'occurrence', 'availablemaps', 'locations']
@@ -22,4 +24,5 @@ class Herpnet:
 
     def get(self, request, options):
         options.update({'api': self.api_key})
-        return requests.get(self.base_url + request, headers=headers, params=options).text
+        url = '{}{}?{}'.format(self.base_url, request, urlencode(options))
+        return urlopen(url)
