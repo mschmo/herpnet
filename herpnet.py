@@ -1,6 +1,7 @@
 import requests
 
-get_endpoints = []
+get_endpoints = ['taxa', 'providers', 'occurrencecount',
+                 'occurrence', 'availablemaps', 'locations']
 
 
 class Herpnet:
@@ -16,7 +17,7 @@ class Herpnet:
 
     def __make_get_endpoint_fun(self, name):
         def _function(options={}):
-            return self.get(request, options)
+            return self.get('{}/'.format(name), options)
         return _function
 
     def get(self, request, options):
