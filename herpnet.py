@@ -1,9 +1,15 @@
 # Forced to use urllib instead of requests
 # Requests gives back an IncompleteRead exception (from httplib)
-from urllib import urlopen, urlencode
+try:
+    # Python v.2.x
+    from urllib import urlencode, urlopen
+except ImportError:
+    # Python v.3.x
+    from urllib.parse import urlencode
+    from urllib.request import urlopen
 
 endpoints = ['taxa', 'providers', 'occurrencecount',
-                 'occurrence', 'availablemaps', 'locations']
+             'occurrence', 'availablemaps', 'locations']
 
 
 class Herpnet:
